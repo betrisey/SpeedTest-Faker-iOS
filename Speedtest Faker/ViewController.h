@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "curl/curl.h"
 
 @interface ViewController : UIViewController
 
@@ -16,5 +17,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtResult;
 @property (weak, nonatomic) IBOutlet UIImageView *imgResult;
 - (IBAction)btnGenerate:(UIButton *)sender;
-- (NSString *)getDataFrom:(NSString *)url;
+- (NSString *)convertIntoMD5:(NSString *)string;
+
+- (NSData*) downloadFileToMemory:(NSString*)url;
+static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp);
+struct MemoryStruct;
 @end

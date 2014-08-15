@@ -22,6 +22,10 @@
 		7E96091E199D285400788362 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E9608FD199D285400788362 /* UIKit.framework */; };
 		7E960926199D285400788362 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E960924199D285400788362 /* InfoPlist.strings */; };
 		7E960928199D285400788362 /* Speedtest_FakerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E960927199D285400788362 /* Speedtest_FakerTests.m */; };
+		7EB634AD199E4AE8002603F7 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EB634AC199E4AE8002603F7 /* libcurl.a */; };
+		7EFAB6F5199E58FC00C9FDD3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EFAB6F4199E58FC00C9FDD3 /* libz.dylib */; };
+		7EFAB6F6199E5D2400C9FDD3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EFAB6F2199E58EB00C9FDD3 /* Security.framework */; };
+		7EFAB6F7199E5F9700C9FDD3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EFAB6F0199E58DC00C9FDD3 /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,10 @@
 		7E960923199D285400788362 /* Speedtest FakerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Speedtest FakerTests-Info.plist"; sourceTree = "<group>"; };
 		7E960925199D285400788362 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7E960927199D285400788362 /* Speedtest_FakerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Speedtest_FakerTests.m; sourceTree = "<group>"; };
+		7EB634AC199E4AE8002603F7 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcurl.a; sourceTree = "<group>"; };
+		7EFAB6F0199E58DC00C9FDD3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		7EFAB6F2199E58EB00C9FDD3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7EFAB6F4199E58FC00C9FDD3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EFAB6F7199E5F9700C9FDD3 /* CFNetwork.framework in Frameworks */,
+				7EFAB6F6199E5D2400C9FDD3 /* Security.framework in Frameworks */,
+				7EFAB6F5199E58FC00C9FDD3 /* libz.dylib in Frameworks */,
+				7EB634AD199E4AE8002603F7 /* libcurl.a in Frameworks */,
 				7E9608FC199D285400788362 /* CoreGraphics.framework in Frameworks */,
 				7E9608FE199D285400788362 /* UIKit.framework in Frameworks */,
 				7E9608FA199D285400788362 /* Foundation.framework in Frameworks */,
@@ -103,6 +115,10 @@
 		7E9608F8199D285400788362 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7EFAB6F4199E58FC00C9FDD3 /* libz.dylib */,
+				7EFAB6F2199E58EB00C9FDD3 /* Security.framework */,
+				7EFAB6F0199E58DC00C9FDD3 /* CFNetwork.framework */,
+				7EB634AC199E4AE8002603F7 /* libcurl.a */,
 				7E9608F9199D285400788362 /* Foundation.framework */,
 				7E9608FB199D285400788362 /* CoreGraphics.framework */,
 				7E9608FD199D285400788362 /* UIKit.framework */,
@@ -393,6 +409,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Speedtest Faker/Speedtest Faker-Prefix.pch";
 				INFOPLIST_FILE = "Speedtest Faker/Speedtest Faker-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -408,6 +428,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Speedtest Faker/Speedtest Faker-Prefix.pch";
 				INFOPLIST_FILE = "Speedtest Faker/Speedtest Faker-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s";
