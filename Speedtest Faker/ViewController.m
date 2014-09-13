@@ -33,28 +33,31 @@
     [_txtUp resignFirstResponder];
     [_txtPing resignFirstResponder];
     [_txtResult resignFirstResponder];
+    [_txtServerId resignFirstResponder];
     
     // Déclaration des variables
     int down, up, ping, serverId;
     NSString *result = @"", *post_data, *curlResultTxt;
+    CURL *_curl;                // Requête cURL
+    NSData *imageData, *data;   // Données reçues lors des requêtes HTTP (image résultat, id résultat)
+    struct MemoryStruct chunk;
     
     // Récupération des valeurs saisies
     down = _txtDown.text.intValue;
     up = _txtUp.text.intValue;
     ping = _txtPing.text.intValue;
-    serverId = 3026;
+    if ([_txtServerId.text  isEqual: @""]) {
+        serverId = 3026;
+    }else{
+        serverId = _txtServerId.text.intValue;
+    }
     
     // Préparation des données à envoyer au serveur
     post_data = [NSString stringWithFormat: @"download=%i&upload=%i&ping=%i&serverid=%i&hash=%@", down, up, ping, serverId, [self convertIntoMD5:[NSString stringWithFormat:@"%i-%i-%i-297aae72",ping,up,down]]];
     
-    // Requête cURL
-    CURL *_curl;
-    
-    struct MemoryStruct chunk;
-    
-    chunk.memory = malloc(1);  /* will be grown as needed by the realloc above */
-    chunk.size = 0;    /* no data at this point */
-    
+    // Requête cURL vers le serveur speedtest
+    chunk.memory = malloc(1);  // Allocation automatique de la mémoire selon les données reçues
+    chunk.size = 0;            // encore aucune données
     _curl = curl_easy_init();
     curl_easy_setopt(_curl, CURLOPT_URL, "http://www.speedtest.net/api/api.php");
     curl_easy_setopt(_curl, CURLOPT_REFERER, "http://c.speedtest.net/flash/speedtest-unicode.swf?v=441647");
@@ -63,12 +66,10 @@
     curl_easy_setopt(_curl, CURLOPT_WRITEDATA, (void *)&chunk);
     curl_easy_perform(_curl);
     curl_easy_cleanup(_curl);
-    
-    NSData *data = [NSData dataWithBytes:chunk.memory length:chunk.size];
-    
+    data = [NSData dataWithBytes:chunk.memory length:chunk.size];
     if(chunk.memory)
         free(chunk.memory);
-    
+    // Convertion de la réponse en string
     curlResultTxt = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     // Traitement du résultat
@@ -80,8 +81,13 @@
     _txtResult.hidden = false;
     
     // Téléchargement et affichage de l'image
-    NSData *imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: result]];
+    imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: result]];
     _imgResult.image = [UIImage imageWithData: imageData];
+}
+
+- (IBAction)btnServersList:(id)sender
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://sam.ninja/speedtest/servers-list.txt"]];
 }
 
 struct MemoryStruct {
